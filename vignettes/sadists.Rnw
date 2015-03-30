@@ -523,7 +523,7 @@ testf(list(d=ddnf,p=pdnf,q=qdnf,r=rdnf),nobs=2^14,df1,df2,ncp1,ncp2)
 
 The doubly non-central t distribution
 generalizes the t distribution to the case where the denominator chi-square is non-central.
-let $X_2 \sim \chi^2_{\nu_2}\left(\delta_2\right)$ be a non-central
+Let $X_2 \sim \chi^2_{\nu_2}\left(\delta_2\right)$ be a non-central
 chi-square variate, with non-centrality parameter $\delta_2$ and $\nu_2$
 degrees of freedom. Let $X_2$ be independent of $Z$, a standard normal. Then
 $$
@@ -539,6 +539,131 @@ df <- 75
 ncp1 <- 2
 ncp2 <- 3
 testf(list(d=ddnt,p=pdnt,q=qdnt,r=rdnt),nobs=2^14,df,ncp1,ncp2)
+@
+%UNFOLD
+\section{Doubly non-central Beta distribution}%FOLDUP
+
+\label{sec:dnbeta}
+
+The doubly non-central Beta distribution generalizes the Beta distribution to the case where the denominator
+chi-square is non-central. 
+For $i=1,2$, 
+let $X_i \sim \chi^2_{\nu_i}\left(\delta_i\right)$ be independent non-central
+chi-square variates, where $\delta_i$ are the non-centrality parameters and
+$\nu_i$ are the degrees of freedom. 
+Then
+$$
+Y = \frac{X_1}{X_1 + X_2}
+$$
+follows a doubly non-central Beta distribution. Note that
+$$
+F = \frac{\nu_2}{\nu_1}\frac{Y}{1-Y}
+$$
+follows a doubly non-central F distribution. The `PDQ' functions use this
+relationship.
+
+<<'dnbeta',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the doubly non-central Beta distribution.">>=
+require(sadists)
+df1 <- 40
+df2 <- 80
+ncp1 <- 1.5
+ncp2 <- 2.5
+testf(list(d=ddnbeta,p=pdnbeta,q=qdnbeta,r=rdnbeta),nobs=2^14,df1,df2,ncp1,ncp2)
+@
+%UNFOLD
+\section{Doubly non-central Eta distribution}%FOLDUP
+
+\label{sec:dneta}
+
+The doubly non-central Eta distribution is to the doubly non-central Beta what
+the doubly non-central t is to the doubly non-central F. 
+Let $X_2 \sim \chi^2_{\nu_2}\left(\delta_2\right)$ be a non-central
+chi-square variate, with non-centrality parameter $\delta_2$ and $\nu_2$
+degrees of freedom. Let $X_2$ be independent of $Z$, a standard normal. Then
+$$
+Y = \frac{Z}{\sqrt{Z^2 + X_2}}
+$$
+follows a doubly non-central Eta distribution with degrees of freedom $\nu_2$ and
+non-centrality parameters $\delta_1, \delta_2$. The square of a doubly
+non-central Eta is a doubly non-central Beta, see \secref{dnbeta}.
+Note that
+$$
+t = {\sqrt{\nu_2}}\frac{Y}{\sqrt{1-Y^2}}
+$$
+follows a doubly non-central t distribution. The `PDQ' functions use this
+relationship.
+
+<<'dneta',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the doubly non-central Eta distribution.">>=
+require(sadists)
+df <- 100
+ncp1 <- 0.5
+ncp2 <- 2.5
+testf(list(d=ddneta,p=pdneta,q=qdneta,r=rdneta),nobs=2^14,df,ncp1,ncp2)
+@
+%UNFOLD
+\section{Sum of logs of (non-central) chi-squares}%FOLDUP
+\label{sec:sumlogchisq}
+
+Let $X_i \sim \chi^2_{\nu_i}\left(\delta_i\right)$ be independent non-central
+chi-square variates, where $\delta_i$ are the non-centrality parameters and
+$\nu_i$ are the degrees of freedom. Let $w_i$ be given constants. Then
+$$
+Y = \sum_i w_i \log{X_i}
+$$
+follows a weighted sum of log of non-central chi-squares distribution. 
+This is not a common distribution. However, its cumulants can easily
+be computed.  \cite{pav2015lnc}
+
+<<'sumlogchisq',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the sum of log of chi-squares distribution.">>=
+require(sadists)
+wts <- c(5,-4,10,-15)
+df <- c(100,200,100,50)
+ncp <- c(0,1,0.5,2)
+testf(list(d=dsumlogchisq,p=psumlogchisq,q=qsumlogchisq,r=rsumlogchisq),nobs=2^14,wts,df,ncp)
+@
+%UNFOLD
+\section{Product of (non-central) chi-squares to a power}%FOLDUP
+
+Let $X_i \sim \chi^2_{\nu_i}\left(\delta_i\right)$ be independent non-central
+chi-square variates, where $\delta_i$ are the non-centrality parameters and
+$\nu_i$ are the degrees of freedom. Let $p_i$ be given constants. Then
+$$
+Y = \prod_i X_i^{p_i}
+$$
+follows a product of non-central chi-squares to a power distribution. 
+This is not a common distribution. 
+The `PDQ' functions are computed using a transform of the 
+logs of chi-squares distribution, see \secref{sumlogchisq}.
+
+<<'prodchisqpow',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the product of chi-squares to a power distribution.">>=
+require(sadists)
+df <- c(100,200,100,50)
+ncp <- c(0,1,0.5,2)
+pow <- c(1,0.5,2,1.5)
+testf(list(d=dprodchisqpow,p=pprodchisqpow,q=qprodchisqpow,r=rprodchisqpow),nobs=2^14,df,ncp,pow)
+@
+%UNFOLD
+\section{Product of doubly non-central F variates}%FOLDUP
+
+Let $X_j \sim F_{\nu_{1,j},\nu_{2,j}}\left(\delta_{1,j},\delta_{2,j}\right)$ 
+be independent doubly non-central F variates, where $\delta_{i,j}$ are the 
+non-centrality parameters and $\nu_{i,j}$ are the degrees of freedom. 
+Then
+$$
+Y = \prod_j X_j
+$$
+follows a product of doubly non-central Fs distribution. 
+This is not a common distribution. 
+The `PDQ' functions are computed using a transform of the 
+logs of chi-squares distribution, see \secref{sumlogchisq}.
+
+<<'proddnf',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the product of doubly non-central Fs distribution.">>=
+require(sadists)
+df1 <- c(10,20,5)
+df2 <- c(1000,500,150)
+ncp1 <- c(1,0,2.5)
+ncp2 <- c(0,1.5,5)
+testf(list(d=dproddnf,p=pproddnf,q=qproddnf,r=rproddnf),nobs=2^14,df1,df2,ncp1,ncp2)
 @
 %UNFOLD
 

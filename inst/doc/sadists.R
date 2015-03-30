@@ -134,3 +134,40 @@ ncp1 <- 2
 ncp2 <- 3
 testf(list(d=ddnt,p=pdnt,q=qdnt,r=rdnt),nobs=2^14,df,ncp1,ncp2)
 
+## ----'dnbeta',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the doubly non-central Beta distribution."----
+require(sadists)
+df1 <- 40
+df2 <- 80
+ncp1 <- 1.5
+ncp2 <- 2.5
+testf(list(d=ddnbeta,p=pdnbeta,q=qdnbeta,r=rdnbeta),nobs=2^14,df1,df2,ncp1,ncp2)
+
+## ----'dneta',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the doubly non-central Eta distribution."----
+require(sadists)
+df <- 100
+ncp1 <- 0.5
+ncp2 <- 2.5
+testf(list(d=ddneta,p=pdneta,q=qdneta,r=rdneta),nobs=2^14,df,ncp1,ncp2)
+
+## ----'sumlogchisq',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the sum of log of chi-squares distribution."----
+require(sadists)
+wts <- c(5,-4,10,-15)
+df <- c(100,200,100,50)
+ncp <- c(0,1,0.5,2)
+testf(list(d=dsumlogchisq,p=psumlogchisq,q=qsumlogchisq,r=rsumlogchisq),nobs=2^14,wts,df,ncp)
+
+## ----'prodchisqpow',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the product of chi-squares to a power distribution."----
+require(sadists)
+df <- c(100,200,100,50)
+ncp <- c(0,1,0.5,2)
+pow <- c(1,0.5,2,1.5)
+testf(list(d=dprodchisqpow,p=pprodchisqpow,q=qprodchisqpow,r=rprodchisqpow),nobs=2^14,df,ncp,pow)
+
+## ----'proddnf',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the product of doubly non-central Fs distribution."----
+require(sadists)
+df1 <- c(10,20,5)
+df2 <- c(1000,500,150)
+ncp1 <- c(1,0,2.5)
+ncp2 <- c(0,1.5,5)
+testf(list(d=dproddnf,p=pproddnf,q=qproddnf,r=rproddnf),nobs=2^14,df1,df2,ncp1,ncp2)
+
