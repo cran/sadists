@@ -159,6 +159,11 @@ NULL
 #'
 #' \newcommand{\sadists}{\href{https://github.com/shabbychef/sadists}}
 #'
+#' @section \sadists{} Version 0.2.1 (2015-06-12) :
+#' \itemize{
+#' \item shiny app (h/t Dean Attali).
+#' }
+#'
 #' @section \sadists{} Version 0.2.0 (2015-04-01) :
 #' \itemize{
 #' \item add doubly non-central Beta and Eta distributions.

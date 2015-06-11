@@ -33,9 +33,10 @@ First some functions to test the 'dpqr' functions:
 
 
 ```r
-require(ggplot2)
-require(grid)
 testf <- function(dpqr, nobs, ...) {
+    require(ggplot2)
+    require(grid)
+    
     set.seed(3940071)
     rv <- sort(dpqr$r(nobs, ...))
     data <- data.frame(draws = rv, pvals = dpqr$p(rv, 
