@@ -3,6 +3,9 @@
 # sadists
 
 [![Build Status](https://travis-ci.org/shabbychef/sadists.png)](https://travis-ci.org/shabbychef/sadists)
+[![codecov.io](http://codecov.io/github/shabbychef/sadists/coverage.svg?branch=master)](http://codecov.io/github/shabbychef/sadists?branch=master)
+[![CRAN](http://www.r-pkg.org/badges/version/sadists)](http://cran.rstudio.com/package=sadists) 
+[![Downloads](http://cranlogs.r-pkg.org/badges/sadists?color=brightgreen)](http://www.r-pkg.org/pkg/sadists)
 
 Some Additional Distributions apparently not available in R.
 
@@ -10,20 +13,22 @@ Some Additional Distributions apparently not available in R.
 
 ## Installation
 
-This package may be installed from CRAN; the latest version may be
-found on [github](https://www.github.com/shabbychef/sadists "sadists")
-via devtools, or installed via [drat](https://github.com/eddelbuettel/drat "drat"):
+This package can be installed from CRAN,
+via [drat](https://github.com/eddelbuettel/drat "drat"), or
+from [github](https://www.github.com/shabbychef/sadists "sadists"):
 
 
 ```r
-if (require(devtools)) {
-    # latest greatest
-    install_github("shabbychef/sadists")
-}
+# via CRAN:
+install.packages("sadists")
 # via drat:
 if (require(drat)) {
     drat:::add("shabbychef")
     install.packages("sadists")
+}
+# via devtools (typically 'master' is stable):
+if (require(devtools)) {
+    install_github("shabbychef/sadists")
 }
 ```
 
@@ -54,14 +59,14 @@ testf <- function(dpqr, nobs, ...) {
         labs(title = "Density (tests dfunc)")
     
     # Q-Q plot
-    p2 <- ggplot(data, aes(sample = draws)) + stat_qq(dist = function(p) {
+    p2 <- ggplot(data, aes(sample = draws)) + stat_qq(distribution = function(p) {
         dpqr$q(p, ...)
     }) + geom_abline(slope = 1, intercept = 0, colour = "red") + 
         theme(text = element_text(size = text.size)) + 
         labs(title = "Q-Q plot (tests qfunc)")
     
     # empirical CDF of the p-values; should be uniform
-    p3 <- ggplot(data, aes(sample = pvals)) + stat_qq(dist = qunif) + 
+    p3 <- ggplot(data, aes(sample = pvals)) + stat_qq(distribution = qunif) + 
         geom_abline(slope = 1, intercept = 0, colour = "red") + 
         theme(text = element_text(size = text.size)) + 
         labs(title = "P-P plot (tests pfunc)")

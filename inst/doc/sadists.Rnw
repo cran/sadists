@@ -88,7 +88,7 @@ opts_chunk$set(fig.width=5.0,fig.height=3.0,out.width="5in",out.height="3in",dpi
 options(width=64,digits=2)
 #opts_chunk$set(size="tiny")
 opts_chunk$set(size="small")
-opts_chunk$set(tidy=TRUE,tidy.opts=list(width.cutoff=36,keep.blank.line=TRUE))
+opts_chunk$set(tidy=TRUE,tidy.opts=list(width.cutoff=36,blank=TRUE))
 
 compile.time <- Sys.time()
 
@@ -369,13 +369,13 @@ testf <- function(dpqr,nobs,...) {
 		labs(title="Density (tests dfunc)")
 
 	# Q-Q plot
-	p2 <- ggplot(data, aes(sample = draws)) + stat_qq(dist=function(p) { dpqr$q(p,...) }) +
+	p2 <- ggplot(data, aes(sample = draws)) + stat_qq(distribution=function(p) { dpqr$q(p,...) }) +
 		geom_abline(slope=1,intercept=0,colour='red') + 
 		theme(text=element_text(size=text.size)) + 
 		labs(title="Q-Q plot (tests qfunc)")
 
 	# empirical CDF of the p-values; should be uniform
-	p3 <- ggplot(data, aes(sample = pvals)) + stat_qq(dist=qunif) + 
+	p3 <- ggplot(data, aes(sample = pvals)) + stat_qq(distribution=qunif) + 
 		geom_abline(slope=1,intercept=0,colour='red') + 
 		theme(text=element_text(size=text.size)) + 
 		labs(title="P-P plot (tests pfunc)")
@@ -666,6 +666,27 @@ ncp2 <- c(0,1.5,5)
 testf(list(d=dproddnf,p=pproddnf,q=qproddnf,r=rproddnf),nobs=2^14,df1,df2,ncp1,ncp2)
 @
 %UNFOLD
+%\section{Sum of generalized gamma variates}%FOLDUP
+
+%Let $X_i \sim G\left(a_i, d_i, p_i\right)$ 
+%be independently distributed generalized gamma variates with parameters
+%$a_i, d_i$ and inverse power $p_i$. \cite{stacey1962}
+%Let $w_i$ be given constants. Then
+%$$
+%Y = \sum_i w_i X_i
+%$$
+%follows a sum of generalized gammas distribution.
+%This is not a common distribution. 
+
+%<<'sumgengamma',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the sum of generalized gammas distribution.">>=
+%require(sadists)
+%wts <- c(8,-10)
+%a <- c(10,2)
+%d <- c(2,1)
+%pow <- c(0.5,1.5)
+%testf(list(d=dsumgengamma,p=psumgengamma,q=qsumgengamma,r=rsumgengamma),nobs=2^14,wts,a,d,pow)
+%@
+%%UNFOLD
 
 \nocite{paolella2007intermediate,Lecoutre1999,PoitLecoutre2010}
 

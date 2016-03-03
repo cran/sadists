@@ -89,6 +89,9 @@ sumchisqpow_support <- function(wts,df,ncp=0,pow=1) {
 #' and \code{rsumchisqpow} generates random deviates.
 #'
 #' Invalid arguments will result in return value \code{NaN} with a warning.
+#' @note The 'sum of chisquare power' distribution does \emph{not} generalize
+#' the 'chi-bar-square' distribution, whose \emph{density} is the sum of
+#' chi-square densities.
 #' @aliases dsumchisqpow psumchisqpow qsumchisqpow rsumchisqpow
 #' @seealso 
 #' The upsilon distribution, 
@@ -127,7 +130,7 @@ qsumchisqpow <- function(p, wts, df, ncp=0, pow=1, lower.tail = TRUE, log.p = FA
 }
 #' @export 
 rsumchisqpow <- function(n, wts, df, ncp=0, pow=1) {
-	subX <- mapply(function(w,dd,nn,pp) { w * (rchisq(n,df=dd,ncp=nn) ^ pp) },
+	subX <- mapply(function(w,dd,nn,pp) { w * (unbroken_rchisq(n,df=dd,ncp=nn) ^ pp) },
 										 wts,df,ncp,pow,SIMPLIFY=FALSE)
 	X <- Reduce('+', subX)
 	return(X)
