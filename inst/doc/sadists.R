@@ -9,13 +9,13 @@ opts_knit$set(eval.after='fig.cap')
 # opts_chunk$set(echo=FALSE,warning=FALSE,message=FALSE)
 opts_chunk$set(warning=FALSE,message=FALSE)
 #opts_chunk$set(results="asis")
-opts_chunk$set(cache=TRUE,cache.path="cache/sadists")
+opts_chunk$set(cache=FALSE,cache.path="cache/sadists")
 
 #opts_chunk$set(fig.path="figure/",dev=c("pdf","cairo_ps"))
-opts_chunk$set(fig.path="figure/sadists",dev=c("pdf"))
+opts_chunk$set(fig.path="figure/sadists",dev=c("png","pdf"))
 #opts_chunk$set(fig.width=4.0,fig.height=6,dpi=200)
 # see http://stackoverflow.com/q/23419782/164611
-opts_chunk$set(fig.width=5.0,fig.height=3.0,out.width="5in",out.height="3in",dpi=200)
+opts_chunk$set(fig.width=4.0,fig.height=2.5,out.width="5in",out.height="3in",dpi=144)
 
 # doing this means that png files are made of figures;
 # the savings is small, and it looks like shit:
@@ -170,4 +170,10 @@ df2 <- c(1000,500,150)
 ncp1 <- c(1,0,2.5)
 ncp2 <- c(0,1.5,5)
 testf(list(d=dproddnf,p=pproddnf,q=qproddnf,r=rproddnf),nobs=2^14,df1,df2,ncp1,ncp2)
+
+## ----'prodnormal',echo=TRUE,eval=TRUE,fig.cap="Confirming the dpqr functions of the product of normals distribution."----
+require(sadists)
+mu <- c(100,20,5)
+sigma <- c(10,2,0.2)
+testf(list(d=dprodnormal,p=pprodnormal,q=qprodnormal,r=rprodnormal),nobs=2^14,mu,sigma)
 

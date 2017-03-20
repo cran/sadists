@@ -162,9 +162,16 @@ NULL
 #'
 #' \newcommand{\sadists}{\href{https://github.com/shabbychef/sadists}}
 #'
-#' @section \sadists{} Version 0.2.2 (2015-08-25) :
+#' @section \sadists{} Version 0.2.3 (2017-03-19):
 #' \itemize{
-#' \item work around bad \code{rchisq} when \eqn{df=0=ncp}
+#' \item add product of normals distribution.
+#' \item move github figures to location CRAN understands.
+#' }
+#'
+#' @section \sadists{} Version 0.2.2 (2016-03-03) :
+#' \itemize{
+#' \item work around bad \code{rchisq} when \eqn{df=0=ncp} (?)
+#' \item incompatibilities in vignette with ggplot2 release.
 #' }
 #'
 #' @section \sadists{} Version 0.2.1 (2015-06-12) :
