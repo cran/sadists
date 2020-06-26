@@ -360,7 +360,7 @@ testf <- function(dpqr,nobs,...) {
 	text.size <- 6   # sigh
 
 	# http://stackoverflow.com/a/5688125/164611
-	p1 <- qplot(rv, geom = 'blank') +   
+	p1 <- ggplot(data, aes(x=draws)) + 
 		geom_line(aes(y = ..density.., colour = 'Empirical'), stat = 'density') +  
 		stat_function(fun = function(x) { dpqr$d(x,...) }, aes(colour = 'Theoretical')) +                       
 		geom_histogram(aes(y = ..density..), alpha = 0.3) +                        
@@ -579,7 +579,8 @@ The doubly non-central Eta distribution is to the doubly non-central Beta what
 the doubly non-central t is to the doubly non-central F. 
 Let $X_2 \sim \chi^2_{\nu_2}\left(\delta_2\right)$ be a non-central
 chi-square variate, with non-centrality parameter $\delta_2$ and $\nu_2$
-degrees of freedom. Let $X_2$ be independent of $Z$, a standard normal. Then
+degrees of freedom. Let $X_2$ be independent of $Z$, which is normal with mean
+$\delta_1$ and unit standard deviation. Then
 $$
 Y = \frac{Z}{\sqrt{Z^2 + X_2}}
 $$
