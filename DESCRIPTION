@@ -4,8 +4,8 @@ Authors@R: c(person(c("Steven", "E."), "Pav",
     role=c("aut","cre"),
     email="shabbychef@gmail.com",
     comment = c(ORCID = "0000-0002-4197-6195")))
-Version: 0.2.4
-Date: 2020-06-23
+Version: 0.2.5
+Date: 2023-08-20
 License: LGPL-3
 Title: Some Additional Distributions
 BugReports: https://github.com/shabbychef/sadists/issues
@@ -24,9 +24,9 @@ Collate: 'cumulants.r' 'dnbeta.r' 'dneta.r' 'dnf.r' 'dnt.r' 'kprime.r'
         'lambdap.r' 'moments.r' 'prodchisqpow.r' 'proddnf.r'
         'prodnormal.r' 'runExample.r' 'sadists.r' 'sumchisqpow.r'
         'sumlogchisq.r' 'upsilon.r' 'utils.r'
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-06-26 04:02:59 UTC; spav
+Packaged: 2023-08-21 16:02:29 UTC; spav
 Author: Steven E. Pav [aut, cre] (<https://orcid.org/0000-0002-4197-6195>)
 Repository: CRAN
-Date/Publication: 2020-06-26 14:40:03 UTC
+Date/Publication: 2023-08-21 18:30:02 UTC
